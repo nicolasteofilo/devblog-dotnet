@@ -1,12 +1,15 @@
-﻿namespace dev_blog_dotnet.Models;
+﻿using Dapper.Contrib.Extensions;
 
+namespace dev_blog_dotnet.Models;
+
+[Table("[User]")]
 public class User
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string PasswordHash { get; set; }
-    public string Bio { get; set; }
-    public string Image { get; set; }
-    public string Slug { get; set; }
+    public required int Id { get; set; }
+    public required string Name { get; set; }
+    public required string Email { get; set; }
+    public required string PasswordHash { get; set; }
+    public required string Bio { get; set; }
+    public required string Image { get; set; }
+    public required string Slug { get; set; }
 }
