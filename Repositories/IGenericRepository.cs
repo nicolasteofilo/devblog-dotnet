@@ -6,4 +6,5 @@ public interface IGenericRepository<T> {
     bool Add(T entity);
     bool Update(T entity);
     bool Delete(int id);
+    bool Delete(T entity);
 }

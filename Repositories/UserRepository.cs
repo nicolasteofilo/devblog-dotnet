@@ -21,6 +21,12 @@ public class UserRepository(SqlConnection connection) : IGenericRepository<User>
         var rows = _connection.Insert<User>(user);
         return rows >  0;
     }
+    
+    public bool Delete(User entity)
+    {
+        var status = _connection.Delete<User>(entity);
+        return status;
+    }
 
     public IEnumerable<User> GetAll() => _connection.GetAll<User>();
 
@@ -31,6 +37,7 @@ public class UserRepository(SqlConnection connection) : IGenericRepository<User>
 
     public bool Update(User entity)
     {
-        throw new NotImplementedException();
+        var status = _connection.Update<User>(entity);
+        return status;
     }
 }

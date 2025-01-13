@@ -13,7 +13,10 @@ class Program
         connection.Open();
 
         var users = GetUsers(connection);
+        var roles = GetRoles(connection);
+        
         Console.WriteLine($"There are a total of {users.Count()} user(s) registered in the database.");
+        Console.WriteLine($"There are {roles.Count()} role(s) registered in the database."); 
 
         connection.Close();
     }
@@ -27,4 +30,8 @@ class Program
     private static void UpdateUser(SqlConnection connection, User user) => new UserRepository(connection).Update(user);
 
     private static void DeleteUser(SqlConnection connection, int userId) => new UserRepository(connection).Delete(userId);
+    
+    private static void CreateRole(SqlConnection connection, Role role) => new RoleRepository(connection).Add(role);
+    
+    private static IEnumerable<Role> GetRoles(SqlConnection connection) => new RoleRepository(connection).GetAll();
 }
