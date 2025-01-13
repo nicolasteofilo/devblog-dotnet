@@ -3,21 +3,40 @@ using dev_blog_dotnet.Models;
 using dev_blog_dotnet.Repositories;
 using Microsoft.Data.SqlClient;
 
-class Program
+namespace dev_blog_dotnet
 {
-    private const string CONNECTION_STRING = @"Server=127.0.0.1,1433;Database=dev-blog;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true";
-
-    public static void Main()
+    class Program
     {
-        var connection = new SqlConnection(CONNECTION_STRING);
-        connection.Open();
+        private const string ConnectionString = @"Server=127.0.0.1,1433;Database=dev-blog;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate=true";
 
-        var userRepository = new Repository<User>(connection);
-        var rolesRepository = new Repository<Role>(connection);
+        public static void Main()
+        {
+            var connection = new SqlConnection(ConnectionString);
+            connection.Open();
+
+            var userRepository = new Repository<User>(connection);
+            var rolesRepository = new Repository<Role>(connection);
+            var tagsRepository = new Repository<Tag>(connection);
         
-        Console.WriteLine($"There are a total of {userRepository.GetAll().Count()} user(s) registered in the database.");
-        Console.WriteLine($"There are {rolesRepository.GetAll().Count()} role(s) registered in the database."); 
+            Console.WriteLine($"There are a total of {userRepository.GetAll().Count()} user(s) registered in the database.");
+            Console.WriteLine($"There are {rolesRepository.GetAll().Count()} role(s) registered in the database.");
 
-        connection.Close();
+            foreach (var user in userRepository.GetAll())
+            {
+                Console.WriteLine(user.Name);
+            }
+
+            foreach (var role in rolesRepository.GetAll())
+            {
+                Console.WriteLine(role.Name);
+            }
+
+            foreach (var tag in tagsRepository.GetAll())
+            {
+                Console.WriteLine(tag.Name);
+            }
+        
+            connection.Close();
+        }
     }
 }
