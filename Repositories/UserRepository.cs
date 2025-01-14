@@ -2,6 +2,7 @@
 using Dapper.Contrib.Extensions;
 using dev_blog_dotnet.Models;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 
 namespace dev_blog_dotnet.Repositories;
 
@@ -11,7 +12,7 @@ public class UserRepository(SqlConnection connection) : Repository<User>(connect
     
     public IList<User> GetWithRoles()
     {
-        var query = @"SELECT [User].*, [Role].*
+        const string query = @"SELECT [User].*, [Role].*
                     FROM
                         [User]
                         LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
@@ -41,5 +42,15 @@ public class UserRepository(SqlConnection connection) : Repository<User>(connect
         }, splitOn: "Id");
         
         return users;
+    }
+
+    public User? GetByEmail(string email)
+    {
+        if (email.IsNullOrEmpty()) return null;
+        
+        const string query = "SELECT * FROM [User] WHERE [Email] = @email";
+
+        var user = _connection.Query<User>(query, new { email }).FirstOrDefault();
+        return user;
     }
 }
