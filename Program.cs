@@ -11,32 +11,41 @@ namespace dev_blog_dotnet
 
         public static void Main()
         {
+            Welcome();
             var connection = new SqlConnection(ConnectionString);
             connection.Open();
 
-            var userRepository = new Repository<User>(connection);
+            MenuOptions();
+            
+            var userRepository = new UserRepository(connection);
             var rolesRepository = new Repository<Role>(connection);
             var tagsRepository = new Repository<Tag>(connection);
         
-            Console.WriteLine($"There are a total of {userRepository.GetAll().Count()} user(s) registered in the database.");
-            Console.WriteLine($"There are {rolesRepository.GetAll().Count()} role(s) registered in the database.");
-
-            foreach (var user in userRepository.GetAll())
-            {
-                Console.WriteLine(user.Name);
-            }
-
-            foreach (var role in rolesRepository.GetAll())
-            {
-                Console.WriteLine(role.Name);
-            }
-
-            foreach (var tag in tagsRepository.GetAll())
-            {
-                Console.WriteLine(tag.Name);
-            }
-        
             connection.Close();
         }
-    }
+
+        private static void Welcome()
+        {
+            Console.WriteLine(@"
+ __   ___          __        __   __  
+|  \ |__  \  /    |__) |    /  \ / _` 
+|__/ |___  \/     |__) |___ \__/ \__> 
+            ");
+        }
+
+        private static string BoldText(string text) => $"\x1b[1m{text}\x1b[0m";
+
+        private static void MenuOptions()
+        {
+            Console.WriteLine(BoldText("OPTIONS"));
+            Console.WriteLine(" Inserts: ");
+            Console.WriteLine("  1. Add new user");
+            Console.WriteLine("  2. Add a new profile (role)");
+            Console.WriteLine("  3. Add a new tag (for posts)");
+            Console.WriteLine("  4. Add a new post");
+            
+            Console.Write("Your choice: ");
+            var operation = float.Parse(Console.ReadLine() ?? string.Empty);
+        }
+     }
 }

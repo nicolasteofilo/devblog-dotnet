@@ -3,7 +3,7 @@
 namespace dev_blog_dotnet.Models;
 
 [Table("[User]")]
-public class User
+public class User()
 {
     public int Id { get; set; }
     public required string Name { get; set; }
@@ -12,4 +12,7 @@ public class User
     public required string Bio { get; set; }
     public required string Image { get; set; }
     public required string Slug { get; set; }
+    
+    [Write(false)]
+    public IList<Role> Roles { get; set; } = new List<Role>();
 }
