@@ -19,17 +19,7 @@ public static class UpdateUserScreen
             ConsoleUtils.ClearConsole();
             Console.WriteLine(ConsoleUtils.BoldText("Errors: "));
             ConsoleUtils.ErrorMessage("User ID is required.");
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         
         var user = UserRepository.GetByIdWithRoles(userId);
@@ -57,33 +47,12 @@ public static class UpdateUserScreen
         if (userIsUpdated)
         {
             ConsoleUtils.SuccessMessage("User updated!");
-            Console.Write("Update new user? (y/n): ");
-            var optionToUpdateNewUser = Console.ReadLine() ?? string.Empty;
-            switch (optionToUpdateNewUser)
-            {
-                case "y":
-                    ConsoleUtils.ClearConsole();
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Update new user?", Display, Program.Main);
         }
         else
         {
             ConsoleUtils.ErrorMessage("User could not be updated! Please try again.");
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
     }
 }

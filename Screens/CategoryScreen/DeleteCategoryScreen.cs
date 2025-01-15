@@ -2,9 +2,9 @@
 using dev_blog_dotnet.Repositories;
 using dev_blog_dotnet.Utils;
 
-namespace dev_blog_dotnet.Screens.TagScreen;
+namespace dev_blog_dotnet.Screens.CategoryScreen;
 
-public static class DeleteTagScreen
+public static class DeleteCategoryScreen
 {
     public static void Display()
     {
@@ -15,25 +15,25 @@ public static class DeleteTagScreen
         {
             ConsoleUtils.ClearConsole();
             Console.WriteLine(ConsoleUtils.BoldText("Errors: "));
-            ConsoleUtils.ErrorMessage("Tag ID is required.");
+            ConsoleUtils.ErrorMessage("Category ID is required.");
             ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         
         Delete(tagId);
     }
 
-    private static void Delete(int tagId)
+    private static void Delete(int categoryId)
     {
-        var repository = new Repository<Tag>(Database.Connection!);
-        var tag = repository.GetById(tagId);
-        if (tag == null)
+        var repository = new Repository<Category>(Database.Connection!);
+        var category = repository.GetById(categoryId);
+        if (category == null)
         {
-            ConsoleUtils.ErrorMessage("Tag not found");
+            ConsoleUtils.ErrorMessage("Category not found");
             ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         
-        repository.Delete(tagId);
-        ConsoleUtils.SuccessMessage("Tag deleted!");
+        repository.Delete(categoryId);
+        ConsoleUtils.SuccessMessage("Category deleted!");
         ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
     }
 }

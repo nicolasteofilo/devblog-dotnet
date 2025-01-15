@@ -3,9 +3,9 @@ using dev_blog_dotnet.Repositories;
 using dev_blog_dotnet.Utils;
 using Microsoft.IdentityModel.Tokens;
 
-namespace dev_blog_dotnet.Screens.TagScreen;
+namespace dev_blog_dotnet.Screens.CategoryScreen;
 
-public static class CreateTagScreen
+public static class CreateCategoryScreen
 {
     public static void Display()
     {
@@ -17,19 +17,20 @@ public static class CreateTagScreen
             errors.Add("Name is required");
 
         ConsoleUtils.PrintErrors(errors, Display);
-        var tag = new Tag()
+        var category = new Category()
         {
             Name = name!,
             Slug = name!.Replace(" ", "-").Trim().ToLower()
         };
-        Add(tag);
+
+        Add(category);
     }
 
-    private static void Add(Tag tag)
+    private static void Add(Category category)
     {
-        var repository = new Repository<Tag>(Database.Connection!);
-        repository.Add(tag);
-        ConsoleUtils.SuccessMessage("New tag created!");
-        ConsoleUtils.HandleQuestion("Add new tag?", Display, Program.Main);
+        var repository = new Repository<Category>(Database.Connection!);
+        repository.Add(category);
+        ConsoleUtils.SuccessMessage("New category created!");
+        ConsoleUtils.HandleQuestion("Add new category?", Display, Program.Main);
     }
 }

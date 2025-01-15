@@ -36,4 +36,64 @@ public static class ConsoleUtils
         var data = Console.ReadLine();
         return data;
     }
+
+    public static void BackToMenuQuestion()
+    {
+        ConsoleUtils.InfoMessage("Back to menu? (y/n): ");
+        var option = Console.ReadLine() ?? string.Empty;
+            
+        switch (option)
+        {
+            case "y":
+                ConsoleUtils.ClearConsole();
+                Program.Main();
+                break;
+            case "n":
+                ConsoleUtils.ClearConsole();
+                System.Environment.Exit(0);
+                break;
+        }
+    }
+
+    public static void HandleQuestion(string prompt, Action onConfirm, Action onCancel)
+    {
+        Console.Write($"{prompt} (y/n): ");
+        var option = Console.ReadLine() ?? string.Empty;
+        
+        switch (option.ToLower())
+        {
+            case "y":
+                ConsoleUtils.ClearConsole();
+                onConfirm.Invoke();
+                break;
+            case "n":
+                onCancel.Invoke();
+                break;
+        }
+    }
+
+    public static void PrintErrors(IList<string> errors, Action fnToBack)
+    {
+        if (errors.Any())
+        {
+            ConsoleUtils.ClearConsole();
+            Console.WriteLine(ConsoleUtils.BoldText("Errors: "));
+            foreach (var err in errors)
+            {
+                ConsoleUtils.ErrorMessage(err);
+            }
+
+            Console.Write("Try again? (y/n): ");
+            var input = Console.ReadLine();
+            switch (input?.ToLower())
+            {
+                case "y":
+                    fnToBack?.Invoke();
+                    break;
+                case "n":
+                    Program.Main();
+                    break;
+            }
+        }
+    }
 }

@@ -15,17 +15,7 @@ public static class DeleteUserScreen
             ConsoleUtils.ClearConsole();
             Console.WriteLine(ConsoleUtils.BoldText("Errors: "));
             ConsoleUtils.ErrorMessage("User ID is required.");
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         
         Delete(userId);
@@ -38,32 +28,11 @@ public static class DeleteUserScreen
         if (user == null)
         {
             ConsoleUtils.ErrorMessage("User not found");
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         
         repository.Delete(userId);
         ConsoleUtils.SuccessMessage("User deleted!");
-        Console.Write("Delete new user? (y/n): ");
-        var optionToDeleteNewUser = Console.ReadLine() ?? string.Empty;
-        switch (optionToDeleteNewUser)
-        {
-            case "y":
-                ConsoleUtils.ClearConsole();
-                Display();
-                break;
-            case "n":
-                Program.Main();
-                break;
-        }
+        ConsoleUtils.HandleQuestion("Delete new user?", Display, Program.Main);
     }
 }

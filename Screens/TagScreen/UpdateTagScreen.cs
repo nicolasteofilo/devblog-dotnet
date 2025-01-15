@@ -19,17 +19,7 @@ public static class UpdateTagScreen
             ConsoleUtils.ClearConsole();
             Console.WriteLine(ConsoleUtils.BoldText("Errors: "));
             ConsoleUtils.ErrorMessage("Tag ID is required.");
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         else
         {
@@ -51,33 +41,12 @@ public static class UpdateTagScreen
         if (tagIsUpdated)
         {
             ConsoleUtils.SuccessMessage("Tag updated!");
-            Console.Write("Update new tag? (y/n): ");
-            var optionToUpdateNewUser = Console.ReadLine() ?? string.Empty;
-            switch (optionToUpdateNewUser)
-            {
-                case "y":
-                    ConsoleUtils.ClearConsole();
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Update new tag?", Display, Program.Main);
         }
         else
         {
             ConsoleUtils.ErrorMessage("Tag could not be updated! Please try again.");
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
     }
 }

@@ -49,17 +49,7 @@ public static class CreateUserScreen
                 ConsoleUtils.ErrorMessage(err);    
             }
             
-            Console.Write("Try again? (y/n): ");
-            var input = Console.ReadLine();
-            switch (input?.ToLower())
-            {
-                case "y":
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Try again?", Display, Program.Main);
         }
         else
         {
@@ -75,19 +65,7 @@ public static class CreateUserScreen
             
             repository.Add(user);
             ConsoleUtils.SuccessMessage("New user created!");
-            Console.Write("Add new user? (y/n): ");
-            var optionToAddNewUser = Console.ReadLine() ?? string.Empty;
-            
-            switch (optionToAddNewUser)
-            {
-                case "y":
-                    ConsoleUtils.ClearConsole();
-                    Display();
-                    break;
-                case "n":
-                    Program.Main();
-                    break;
-            }
+            ConsoleUtils.HandleQuestion("Add new user?", Display, Program.Main);
         }
     }
 }

@@ -22,19 +22,6 @@ public static class ListTagsScreen
             Console.WriteLine($"Id: {tag.Id}, Name: {tag.Name}");
         }
         
-        ConsoleUtils.InfoMessage("Back to menu? (y/n): ");
-        var option = Console.ReadLine() ?? string.Empty;
-            
-        switch (option)
-        {
-            case "y":
-                ConsoleUtils.ClearConsole();
-                Program.Main();
-                break;
-            case "n":
-                ConsoleUtils.ClearConsole();
-                System.Environment.Exit(0);
-                break;
-        }
+        ConsoleUtils.BackToMenuQuestion();
     }
 }
