@@ -19,7 +19,7 @@ public static class MenuUserScreen
         {
             case 1:
                 ConsoleUtils.ClearConsole();
-                MenuUserScreen.Display();
+                ListUsersScreen.Display();
                 break;
             case 2:
                 CreateUserScreen.Display();
