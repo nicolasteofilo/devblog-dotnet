@@ -6,11 +6,11 @@ public static class MenuUserScreen
 {
     public static void Display()
     {
-        System.Console.WriteLine("Users: ");
-        System.Console.WriteLine(" 1. List users");
-        System.Console.WriteLine(" 2. New user");
-        System.Console.WriteLine(" 3. Update user");
-        System.Console.WriteLine(" 4. Remove user");
+        Console.WriteLine("Users: ");
+        Console.WriteLine(" 1. List users");
+        Console.WriteLine(" 2. New user");
+        Console.WriteLine(" 3. Update user");
+        Console.WriteLine(" 4. Remove user");
         
         Console.Write("Your choice: ");
         var operation = float.Parse(Console.ReadLine() ?? string.Empty);
