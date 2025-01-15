@@ -25,10 +25,10 @@ public static class MenuTagScreen
                 CreateTagScreen.Display();
                 break;
             case 3:
-                // UpdateUserScreen.Display();
+                UpdateTagScreen.Display();
                 break;
             case 4:
-                // DeleteUserScreen.Display();
+                DeleteTagScreen.Display();
                 break;
         }
     }
