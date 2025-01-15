@@ -1,4 +1,5 @@
-﻿using dev_blog_dotnet.Screens.TagScreen;
+﻿using dev_blog_dotnet.Screens.PostScreen;
+using dev_blog_dotnet.Screens.TagScreen;
 using dev_blog_dotnet.Screens.UserScreen;
 using dev_blog_dotnet.Utils;
 
@@ -27,6 +28,10 @@ public static class MenuManagementScreen
             case 2:
                 ConsoleUtils.ClearConsole();
                 MenuTagScreen.Display();
+                break;
+            case 3:
+                ConsoleUtils.ClearConsole();
+                MenuPostScreen.Display();
                 break;
             case 5:
                 ConsoleUtils.ClearConsole();

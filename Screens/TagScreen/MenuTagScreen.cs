@@ -6,7 +6,7 @@ public static class MenuTagScreen
 {
     public static void Display()
     {
-        Console.WriteLine("Tags: ");
+        Console.WriteLine(ConsoleUtils.BoldText("Tags: "));
         Console.WriteLine(" 1. List tags");
         Console.WriteLine(" 2. New tag");
         Console.WriteLine(" 3. Update tag");

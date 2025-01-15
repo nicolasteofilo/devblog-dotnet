@@ -6,7 +6,7 @@ public static class MenuUserScreen
 {
     public static void Display()
     {
-        Console.WriteLine("Users: ");
+        Console.WriteLine(ConsoleUtils.BoldText("Users: "));
         Console.WriteLine(" 1. List users");
         Console.WriteLine(" 2. New user");
         Console.WriteLine(" 3. Update user");
