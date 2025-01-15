@@ -4,23 +4,30 @@ public static class ConsoleUtils
 {
     public static void ErrorMessage(string message)
     {
-        System.Console.ForegroundColor = ConsoleColor.Red;
-        System.Console.WriteLine(message);
-        System.Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine(message);
+        Console.ResetColor();
     }
 
     public static void SuccessMessage(string message)
     {
-        System.Console.ForegroundColor = ConsoleColor.Green;
-        System.Console.WriteLine(message);
-        System.Console.ResetColor();
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine(message);
+        Console.ResetColor();
+    }
+
+    public static void InfoMessage(string message)
+    {
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        Console.Write(message);
+        Console.ResetColor();
     }
     
     public static string BoldText(string text) => $"\x1b[1m{text}\x1b[0m";
     
     public static void ClearConsole()
     {
-        System.Console.Clear();
+        Console.Clear();
     }
 
     public static string? Input(string fieldName)

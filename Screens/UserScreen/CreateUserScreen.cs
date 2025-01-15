@@ -20,7 +20,7 @@ public static class CreateUserScreen
 
     private static void Add(string? name, string? email, string? password, string? bio)
     {
-        var repository = new UserRepository(Database.Connection);
+        var repository = new UserRepository(Database.Connection!);
         var slug = name?.Replace(" ", "-").Trim().ToLower();
 
         IList<string> errors = new List<string>();
@@ -43,7 +43,7 @@ public static class CreateUserScreen
         if (errors.Any())
         {
             ConsoleUtils.ClearConsole();
-            Console.WriteLine(ConsoleUtils.BoldText("Erros: "));
+            Console.WriteLine(ConsoleUtils.BoldText("Errors: "));
             foreach (var err in errors)
             {
                 ConsoleUtils.ErrorMessage(err);    

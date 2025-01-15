@@ -9,7 +9,7 @@ public class Repository<TModel>(SqlConnection connection) : IGenericRepository<T
     
     public IEnumerable<TModel> GetAll() => _connection.GetAll<TModel>();
     
-    public TModel GetById(int id) => _connection.Get<TModel>(id);
+    public TModel? GetById(int id) => _connection.Get<TModel>(id);
     
     public bool Add(TModel entity) => _connection.Insert(entity) > 0;
 

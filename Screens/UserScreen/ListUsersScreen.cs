@@ -17,6 +17,20 @@ public static class ListUsersScreen
             var roles = user.Roles.Any() ? string.Join(", ", user.Roles.Select(role => role.Name)) : string.Empty;
             Console.WriteLine($"Id: {user.Id}, Name: {user.Name}, Email: {user.Email} ({roles})");
         }
+        ConsoleUtils.InfoMessage("Back to menu? (y/n): ");
+        var option = Console.ReadLine() ?? string.Empty;
+            
+        switch (option)
+        {
+            case "y":
+                ConsoleUtils.ClearConsole();
+                Program.Main();
+                break;
+            case "n":
+                ConsoleUtils.ClearConsole();
+                System.Environment.Exit(0);
+                break;
+        }
     }
 
     private static IList<User> List()
