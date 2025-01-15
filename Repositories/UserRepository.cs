@@ -50,7 +50,38 @@ public class UserRepository(SqlConnection connection) : Repository<User>(connect
         
         const string query = "SELECT * FROM [User] WHERE [Email] = @email";
 
-        var user = _connection.Query<User>(query, new { email }).FirstOrDefault();
+        var user = _connection.Query<User>(query,new { email }).FirstOrDefault();
+        return user;
+    }
+    
+    public User? GetByIdWithRoles(int id)
+    {
+        const string query = @"SELECT [User].*, [Role].*
+                    FROM
+                        [User]
+                        LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
+                        LEFT JOIN [Role] ON [Role].[Id] = [UserRole].[RoleId]
+                    WHERE [User].[Id] = @id
+    ";
+
+        User? usr = null;
+        var user = _connection.Query<User, Role, User>(query, (user, role) =>
+        {
+            if (usr == null)
+            {
+                usr = user;
+                if (role != null)
+                {
+                    usr.Roles.Add(role);
+                }
+            }
+            else
+            {
+                usr.Roles.Add(role);
+            }
+
+            return user;
+        }, new { id }).FirstOrDefault();
         return user;
     }
 }

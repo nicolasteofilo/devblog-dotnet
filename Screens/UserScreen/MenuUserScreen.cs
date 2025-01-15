@@ -25,7 +25,7 @@ public static class MenuUserScreen
                 CreateUserScreen.Display();
                 break;
             case 3:
-                Display();
+                UpdateUserScreen.Display();
                 break;
             case 4:
                 DeleteUserScreen.Display();

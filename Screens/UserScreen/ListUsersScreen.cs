@@ -15,7 +15,7 @@ public static class ListUsersScreen
         foreach (var user in users)
         {
             var roles = user.Roles.Any() ? string.Join(", ", user.Roles.Select(role => role.Name)) : string.Empty;
-            Console.WriteLine($"Id: {user.Id}, Name: {user.Name}, Email: {user.Email} ({roles})");
+            Console.WriteLine($"Id: {user.Id}, Name: {user.Name}, Email: {user.Email} Bio: {user.Bio} ({roles})");
         }
         ConsoleUtils.InfoMessage("Back to menu? (y/n): ");
         var option = Console.ReadLine() ?? string.Empty;
