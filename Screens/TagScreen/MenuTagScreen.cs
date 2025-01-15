@@ -9,7 +9,7 @@ public static class MenuTagScreen
         Console.WriteLine("Tags: ");
         Console.WriteLine(" 1. List tags");
         Console.WriteLine(" 2. New tag");
-        Console.WriteLine(" 3. Update user");
+        Console.WriteLine(" 3. Update tag");
         Console.WriteLine(" 4. Remove tag");
         
         Console.Write("Your choice: ");
@@ -22,7 +22,7 @@ public static class MenuTagScreen
                 ListTagsScreen.Display();
                 break;
             case 2:
-                // CreateUserScreen.Display();
+                CreateTagScreen.Display();
                 break;
             case 3:
                 // UpdateUserScreen.Display();
