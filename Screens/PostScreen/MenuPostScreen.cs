@@ -24,6 +24,7 @@ public static class MenuPostScreen
                 break;
             case "2":
                 ConsoleUtils.ClearConsole();
+                ViewPostScreen.Display();
                 break;
             case "3":
                 ConsoleUtils.ClearConsole();
