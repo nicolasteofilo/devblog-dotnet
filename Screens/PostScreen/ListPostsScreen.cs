@@ -2,5 +2,8 @@
 
 public class ListPostsScreen
 {
-    
+    public static void Display()
+    {
+        
+    }
 }

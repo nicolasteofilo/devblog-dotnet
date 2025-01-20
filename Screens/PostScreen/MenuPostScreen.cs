@@ -12,5 +12,32 @@ public static class MenuPostScreen
         Console.WriteLine(" 3. New post");
         Console.WriteLine(" 3. Update post");
         Console.WriteLine(" 4. Remove post");
+        
+        Console.Write("Your choice: ");
+        var operation = Console.ReadLine()  ?? string.Empty;
+        
+        switch (operation)
+        {
+            case "1":
+                ConsoleUtils.ClearConsole();
+                ListPostsScreen.Display();
+                break;
+            case "2":
+                ConsoleUtils.ClearConsole();
+                break;
+            case "3":
+                ConsoleUtils.ClearConsole();
+                CreatePostScreen.Display();
+                break;
+            case "4":
+                ConsoleUtils.ClearConsole();
+                break;
+            case "6":
+                ConsoleUtils.ClearConsole();
+                break;
+            default:
+                Program.Main();
+                break;
+        }
     }
 }
