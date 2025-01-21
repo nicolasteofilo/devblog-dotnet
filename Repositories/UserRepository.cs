@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Dapper.Contrib.Extensions;
 using dev_blog_dotnet.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
